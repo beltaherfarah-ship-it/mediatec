@@ -15,7 +15,12 @@ public abstract class Dvd extends Document implements Empruntable{
             throw new IllegalStateException("le DVD « " + getTitre() + " » est déjà emprunté");
 
         }
-        emprunte = false
+        emprunte = false;
+    }
+    public boolean estEmprunte() { return emprunte; }
+
+    public String descriptionCourte() {
+        return "DVD : " + getTitre() + " (" + dureeMinutes + "min, " + getAnnee() + ")" + (emprunte ? " [emprunte]" : "");
     }
 
 }
