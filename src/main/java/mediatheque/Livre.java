@@ -14,17 +14,26 @@ public class Livre extends Document implements Empruntable{
 
     @Override
     public String descriptionCourte() {
-        return "";
+        return "Livre : " + getTitre() + " de " + auteur + " (" + getAnnee() + ")"
+                + (emprunte ? " [emprunté]" : "");;
     }
 
     @Override
     public void emprunter() {
-
+        if (!emprunte) {
+            throw new IllegalStateException(
+                    "Le livre « " + getTitre() + " » est déjà emprunté"
+            );
+        }
+        emprunte = true;
     }
 
     @Override
     public void rendre() {
-
+        if (!emprunte) {
+            throw new IllegalStateException("Le livre « " + getTitre() + " » n'est pas emprunté");
+        }
+        emprunte = false;
     }
 
     @Override
