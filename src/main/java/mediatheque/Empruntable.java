@@ -1,6 +1,8 @@
 package mediatheque;
 
+/** Contrat des documents qui s'empruntent (Livre et Dvd, pas Revue). */
 public interface Empruntable {
+
     /** @throws IllegalStateException si déjà emprunté */
     void emprunter();
 

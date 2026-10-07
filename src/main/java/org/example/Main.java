@@ -1,17 +1,27 @@
-package org.example;
+package mediatheque;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Catalogue<Document> catalogue = new Catalogue<>();
+        catalogue.ajouter(new Livre("Le Petit Prince", 1943, "Saint-Exupéry"));
+        catalogue.ajouter(new Dvd("Inception", 2010, 148));
+        catalogue.ajouter(new Revue("Science & Vie", 2024, 1285));
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        catalogue.afficherTout();
+
+        catalogue.rechercherParTitre("Inception")
+                .ifPresentOrElse(d -> System.out.println("Trouvé : " + d),
+                        () -> System.out.println("Introuvable"));
+
+        if (catalogue.rechercherParTitre("Le Petit Prince").orElseThrow() instanceof Empruntable e) {
+            e.emprunter();
+            try {
+                e.emprunter(); // double emprunt
+            } catch (IllegalStateException ex) {
+                System.out.println("Erreur attendue : " + ex.getMessage());
+            }
         }
+
+        System.out.println("Max (ordre alphabétique) : " + Catalogue.max(catalogue.getElements()));
     }
 }

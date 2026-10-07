@@ -29,6 +29,6 @@ public class Catalogue<T extends Document> {
 
     public int taille() { return elements.size(); }
 
-      List<T> getElements() { return List.copyOf(elements); }
+       List<T> getElements() { return List.copyOf(elements); }
 
 }
