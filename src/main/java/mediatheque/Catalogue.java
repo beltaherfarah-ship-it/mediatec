@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/** Catalogue générique : un Catalogue<Livre>, un Catalogue<Dvd>, un Catalogue<Document>... */
+/**
+ * Catalogue générique : un Catalogue<Livre>, un Catalogue<Dvd>, un Catalogue<Document>...
+ */
 public class Catalogue<T extends Document> {
 
     private final List<T> elements = new ArrayList<>();
-
-    public static String max(List<Document> elements) {
-    }
 
     public void ajouter(T element) {
         if (element == null) {
@@ -25,13 +24,18 @@ public class Catalogue<T extends Document> {
                 .findFirst();
     }
 
-    /** Aucun instanceof : le polymorphisme de descriptionCourte() fait le travail. */
+    /**
+     * Aucun instanceof : le polymorphisme de descriptionCourte() fait le travail.
+     */
     public void afficherTout() {
         elements.forEach(e -> System.out.println(e.descriptionCourte()));
     }
 
-    public int taille() { return elements.size(); }
+    public int taille() {
+        return elements.size();
+    }
 
-       List<T> getElements() { return List.copyOf(elements); }
-
+    List<T> getElements() {
+        return List.copyOf(elements);
+    }
 }
