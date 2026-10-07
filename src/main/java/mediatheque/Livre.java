@@ -1,6 +1,6 @@
 package mediatheque;
 
-public class Livre extends Document implements Empruntable{
+public class Livre extends Document implements Empruntable {
 
     private final String auteur;
     private boolean emprunte;
@@ -13,17 +13,9 @@ public class Livre extends Document implements Empruntable{
     public String getAuteur() { return auteur; }
 
     @Override
-    public String descriptionCourte() {
-        return "Livre : " + getTitre() + " de " + auteur + " (" + getAnnee() + ")"
-                + (emprunte ? " [emprunté]" : "");;
-    }
-
-    @Override
     public void emprunter() {
-        if (!emprunte) {
-            throw new IllegalStateException(
-                    "Le livre « " + getTitre() + " » est déjà emprunté"
-            );
+        if (emprunte) {
+            throw new IllegalStateException("Le livre « " + getTitre() + " » est déjà emprunté");
         }
         emprunte = true;
     }
@@ -37,7 +29,11 @@ public class Livre extends Document implements Empruntable{
     }
 
     @Override
-    public boolean estEmprunte() {
-        return false;
+    public boolean estEmprunte() { return emprunte; }
+
+    @Override
+    public String descriptionCourte() {
+        return "Livre : " + getTitre() + " de " + auteur + " (" + getAnnee() + ")"
+                + (emprunte ? " [emprunté]" : "");
     }
 }
