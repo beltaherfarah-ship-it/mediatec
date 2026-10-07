@@ -4,19 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Catalogue générique : un Catalogue<Livre>, un Catalogue<Dvd>, un Catalogue<Document>...
- */
 public class Catalogue<T extends Document> {
 
     private final List<T> elements = new ArrayList<>();
 
-    public static String max(List<Document> elements){
+    public static String max(List<Document> elements) {
         return elements.stream()
-                .map(document::getTitre)
+                .map(Document::getTitre)
                 .max(String::compareTo)
                 .orElse("");
-
     }
 
     public void ajouter(T element) {
@@ -32,9 +28,6 @@ public class Catalogue<T extends Document> {
                 .findFirst();
     }
 
-    /**
-     * Aucun instanceof : le polymorphisme de descriptionCourte() fait le travail.
-     */
     public void afficherTout() {
         elements.forEach(e -> System.out.println(e.descriptionCourte()));
     }
