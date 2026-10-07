@@ -11,6 +11,14 @@ public class Catalogue<T extends Document> {
 
     private final List<T> elements = new ArrayList<>();
 
+    public static String max(List<Document> elements){
+        return elements.stream()
+                .map(document::getTitre)
+                .max(String::compareTo)
+                .orElse("");
+
+    }
+
     public void ajouter(T element) {
         if (element == null) {
             throw new IllegalArgumentException("Élément null");
