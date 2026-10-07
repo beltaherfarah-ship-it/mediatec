@@ -4,7 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Catalogue<Document> catalogue = new Catalogue<>();
         catalogue.ajouter(new Livre("Le Petit Prince", 1943, "Saint-Exupéry"));
-        catalogue.ajouter(new Dvd("Inception", 2010, 148));
+        catalogue.ajouter(new Dvd("Inception", 2010, 148) {
+            @Override
+            public void rendre() {
+
+            }
+        });
         catalogue.ajouter(new Revue("Science & Vie", 2024, 1285));
 
         catalogue.afficherTout();
