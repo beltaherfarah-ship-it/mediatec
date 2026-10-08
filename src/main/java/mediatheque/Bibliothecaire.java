@@ -3,11 +3,6 @@ package mediatheque;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * Refactoring par COMPOSITION (« a un », pas « est un »).
- * Le catalogue est un détail interne : il n'est ni exposé ni hérité.
- * Voir docs/analyse-heritage.md pour ce qui n'allait pas avec « extends Catalogue ».
- */
 public class Bibliothecaire {
 
     private final String nom;
